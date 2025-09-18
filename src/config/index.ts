@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 type ServerConfig = {
     PORT: number,
     MONGO_URI:string,
+    JWT_SECRET:string
    
 }
 
@@ -17,5 +18,6 @@ loadEnv();
 export const serverConfig: ServerConfig = {
     PORT: Number(process.env.PORT) || 4000,
     MONGO_URI:process.env.MONGO_URI|| "mongodb://localhost:27017/uberBackend",
+    JWT_SECRET:process.env.JWT_SECRET || 'trishit'
 
 };
