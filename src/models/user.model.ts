@@ -1,8 +1,13 @@
 
+import { Request } from "express";
 import mongoose, { Document, Schema } from "mongoose";
 export interface ILocation extends Document{
     type:'Point',
     coordinates:number[]
+}
+
+export interface AuthRequest extends Request {
+  user?: IUser;
 }
 export interface IUser extends Document{
     name:string,

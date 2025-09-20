@@ -1,11 +1,12 @@
 import express from 'express';
 import { serverConfig } from './config';
-import authRouter from './routers/v1/index.router';
+import authRouter from './routers/v1/auth.router';
 import v2Router from './routers/v2/index.router';
 import { appErrorHandler, genericErrorHandler } from './middlewares/error.middleware';
 import logger from './config/logger.config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { connectDB } from './config/db';
+import passengerRouter from './routers/v1/booking.router';
 const app = express();
 
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use(attachCorrelationIdMiddleware);
 app.use('/api/auth', authRouter);
+app.use('/api/passengers', passengerRouter);
 app.use('/api/v2', v2Router); 
 
 
