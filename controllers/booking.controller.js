@@ -1,4 +1,4 @@
-import { createBookingService } from "../services/booking.service.js";
+import { createBookingService, findNearByDrivers } from "../services/booking.service.js";
 
 
 
@@ -9,6 +9,12 @@ export const createBookingHandler = async (req,res)=> {
     const {source,destination} =req.body;
     
     const booking=await createBookingService({passengerId:req.user?._id,source,destination});
+
+    const driverIds = [];
+    const nearbyDrivers = await findNearByDrivers(source);
+
+    console.log(nearbyDrivers);
+
 
     res.status(201).send({
         data:{booking,
