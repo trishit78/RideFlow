@@ -9,16 +9,20 @@ export async function updateLocationService(updateLocationData) {
 
     const latitude =parseFloat(lat);
     const longitude = parseFloat(long);
+    try{
 
-    const res = await locationService.addDriverLocation({passengerId,latitude,longitude});
+        const res = await locationService.addDriverLocation(passengerId,latitude,longitude);
+        
+        await updateDriverLocation(passengerId,{
+            type:'Point',
+            coordinates:[long,lat]
+        })
+        
+    }catch(error){
+        console.log('error ',error.message)
+    }
 
-    await updateDriverLocation(passengerId,{
-        type:'Point',
-        coordinates:[long,lat]
-    })
-
-
-    console.log(latitude,longitude,passengerId,res);
+    //console.log(latitude,longitude,passengerId,res);
 
 }
 

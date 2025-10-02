@@ -37,6 +37,7 @@ export async function findNearByDrivers(location, radius = 5) {
   const latitude = parseFloat(location.latitude);
 
   const radiusKm = parseFloat(radius);
+  
   const nearByDrivers = await locationService.findNearByDrivers(
     longitude,
     latitude,
