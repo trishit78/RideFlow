@@ -14,3 +14,11 @@ export async function createBooking(bookingData) {
  console.log('error in booking repo',error);       
 }    
 }
+
+export async function updateBookingStatus(bookingId, driverId, status) {
+    return Booking.findOneAndUpdate(
+      { _id: bookingId, status:'pending' },
+      { driver: driverId, status: 'confirmed' },
+      { new: true }
+    );
+  }

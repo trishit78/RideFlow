@@ -1,5 +1,6 @@
 
 import { updateDriverLocation } from "../repositories/auth.repository.js";
+import { updateBookingStatus } from "../repositories/booking.repository.js";
 import locationService from "./location.service.js";
 
 
@@ -25,4 +26,15 @@ export async function updateLocationService(updateLocationData) {
     //console.log(latitude,longitude,passengerId,res);
 
 }
+export async function assignDriverService(bookingId, driverId) {
+    console.log("Assigning driver:", bookingId, driverId);
+    
+    const booking = await updateBookingStatus(bookingId, driverId, 'pending'); // ✅ fixed
+    
+    if (!booking) {
+      throw new Error('Booking already confirmed or does not exist');
+    }
+    return booking;
+  }
+  
 

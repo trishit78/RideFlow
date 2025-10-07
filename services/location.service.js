@@ -52,6 +52,11 @@ class LocationService{
             console.log(`Added driver ${driverId} to the set for booking ${bookingId}. result: ${addedCount}` );
         }
     }
+
+    async getNotifiedDrivers(bookingId){
+        const nearByDrivers = await redisClient.sMembers(`notifiedDrivers:${bookingId}`);
+        return nearByDrivers;
+    }
 }
 
 export default new LocationService();
