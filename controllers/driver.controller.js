@@ -33,13 +33,18 @@ export async function confirmBookingHandler(req,res) {
     try {
         const notificationResponse = await axios.post('http://localhost:3001/api/remove-ride-notification',{
             rideId:bookingId,
-            driverIds:bookingId
+            driverIds:notifiedDriverIds
         })
         console.log('Successfully removed ride notifications',notificationResponse.data);
 
     } catch (error) {
         console.log('error in driver controllers',error.message);
     }
+
+
+     res.status(201)
+    .send({data:booking, success: true, error: null, message: "successfully confirmed booking"});
+
 }
 
 

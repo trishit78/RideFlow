@@ -29,7 +29,7 @@ export async function updateLocationService(updateLocationData) {
 export async function assignDriverService(bookingId, driverId) {
     console.log("Assigning driver:", bookingId, driverId);
     
-    const booking = await updateBookingStatus(bookingId, driverId, 'pending'); // ✅ fixed
+    const booking = await updateBookingStatus(bookingId, driverId, 'confirmed'); 
     
     if (!booking) {
       throw new Error('Booking already confirmed or does not exist');
